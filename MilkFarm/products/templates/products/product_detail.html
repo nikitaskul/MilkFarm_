@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card bg-light">
+        <div class="row">
+            <div class="col-md-2">
+                {% if object.image %}
+                <img src="{{ object.image.url }}" class="card-img" alt="...">
+                {% else %}
+                <img src="{% static 'image/no-photo-available.png' %}" class="card-img-top" alt="...">
+                {% endif %}
+            </div>
+            <div class="col-md-10">
+                <div class="card-body bg-light">
+                    <h5 class="card-title">{{ object.name }}</h5>
+                    <p class="card-text">{{ object.description }}</p>
+                </div>
+                <ul class="list-group list-group-flush ">
+                    <li class="list-group-item bg-light">Количество: {{ object.stock }}</li>
+                    <li class="list-group-item bg-light">Цена за шт: {{ object.price }}</li>
+                </ul>
+                <div class="card-body bg-light">
+                    <form class="" action="{% url 'cart:cart_add' object.pk %}" method="post">
+                        {% csrf_token %}
+                        <div class="">
+                            <div class="text-center mb-3 col-1">
+                                <div class="form-control">
+                                    {{ cart_product_form.quantity }}
+                                </div>
+                            </div>
+                            <div class="">
+                                <button class="btn bg-dark text-light btn-lg" type="submit">Добавить</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

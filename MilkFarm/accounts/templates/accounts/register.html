@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="position-absolute top-50 start-50  translate-middle">
+    <div class="bg-light border-radius-10 semi p-5 min-width-200">
+        <div class="mb-5 text-center">
+            <h1>Регистрация</h1>
+            {% if messages %}
+            {% for message in messages %}
+
+            {% if message.tags == 'error' %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+            {% else %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+            {% endif %}
+
+            {% endfor %}
+            {% endif %}
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-grid gap-2 col-6 mx-auto mt-5 mb-2">
+                <button type="submit" class="btn bg-dark text-light">Зарегистрироваться</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load category_tag %}
+
+{% block content %}
+
+<div class="content mt-4 ms-4 me-4">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="p-2 border-radius-10 semi">
+                <div class="bg-light border-radius-10 text-center mb-3 p-1">
+                    <h1>Категории</h1>
+                </div>
+                {% block sidebar %}
+                {% show_categories %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="mt-2">
+                <div class="row row-cols-5">
+                    {% for object in object_list %}
+                    <div class="col mb-3">
+                        <div class="card" style="width: 18rem;">
+                            {% if object.image %}
+                            <img src="{{ object.image.url }}" class="card-img-top" alt="..." style="height: 200px">
+                            {% else %}
+                            <img src="{% static 'image/no-photo-available.png' %}" class="card-img-top" alt="..."
+                                 style="height: 200px">
+                            {% endif %}
+                            <div class="card-body bg-light">
+                                <h5 class="card-title">{{ object.name }}</h5>
+                                <p class="card-text">{{ object.description }}</p>
+                                <a href="{{ object.get_absolute_url }}" class="btn bg-dark text-white">
+                                    Купить $ {{ object.price }} за шт.
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    Empty!
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

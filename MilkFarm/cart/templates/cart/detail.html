@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container d-grid gap-2 mx-auto mt-5 bg-light p-5 border-radius-10 semi">
+    <div class="text-center">
+        <h1>Ваша корзина</h1>
+    </div>
+    <table class="table bg-light table-striped">
+        <thead class="bg-light">
+        <tr class="bg-light">
+            <th scope="col">Наименование</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Цена за единицу</th>
+            <th scope="col">Общая цена</th>
+            <th scope="col">Убрать</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+        {% with product=item.product %}
+        <tr>
+            <td><a class="btn bg-dark text-light" href="{{ product.get_absolute_url }}">{{ product }}</a></td>
+            <td>{{ item.quantity }}</td>
+            <td class="num">${{ item.price }}</td>
+            <td class="num">${{ item.total_price }}</td>
+            <td><a class="btn bg-dark text-light" href="{% url 'cart:cart_remove' product.id%}">Удалить</a></td>
+        </tr>
+        {% endwith %}
+        {% endfor %}
+        <tr class="total bg-light">
+            <td><h2>Total</h2></td>
+            <td colspan="2"></td>
+            <td class="num"><h2>${{ cart.get_total_price }}</h2></td>
+            <td colspan="1"></td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url 'orders:order_create' %}" class="btn bg-dark text-white">Заказать</a>
+    </p>
+</div>
+{% endblock %}

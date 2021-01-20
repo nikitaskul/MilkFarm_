@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <form action="." method="post" class="form-control bg-light">
+                {{ form.as_p }}
+                <p><input type="submit" value="Заказать" class="btn bg-dark text-white btn-lg"></p>
+                {% csrf_token %}
+            </form>
+        </div>
+        <div class="col form-control bg-light">
+            <h3>Ваш заказ</h3>
+            <ul>
+                {% for item in cart %}
+                <li>
+                    {{ item.quantity }}x {{ item.product.name }}
+                    <span>${{ item.total_price }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+            <p>Всего: ${{ cart.get_total_price }}</p>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

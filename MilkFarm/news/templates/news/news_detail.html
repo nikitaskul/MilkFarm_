@@ -1,0 +1,38 @@
+{% extends 'news/base.html' %}
+
+
+{% block title%}
+{{ news_item.title }} :: {{ block.super }}
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
+{% block news_content %}
+<div class="card mb-3">
+    <div class="card-header bg-light">
+        <a href="{{ news_item.category.get_absolute_url }}" class="btn bg-dark text-white">{{ news_item.category.title }}</a>
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-sm-4">
+                {% if news_item.photo %}
+                <img src="{{ news_item.photo.url }}" class="mr-3" alt="..." width="250">
+                {% else %}
+                <img src="https://picsum.photos/seed/picsum/200/300" class="mr-3" alt="..." width="250">
+                {% endif %}
+            </div>
+            <div class="col-sm-8">
+                <h5 class="card-title">{{ news_item.title }}</h5>
+                <p class="card-text">{{ news_item.content}}</p>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="card-footer text-muted bg-light">
+        {{ news_item.created_at|date:"Y-m-d H:i" }}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+.image-div {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.image-div-absolute {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.background-image {
+    background: url(images/main_photo.jpg) no-repeat;
+    background-size: cover;
+}
+
+.background-color-white {
+    background-color: white;
+    opacity: 0.9;
+}
+
+.bg-teal {
+    background-color: #2E8B57;
+}
+
+.bg-color-red {
+    background-color: red;
+}
+
+.semi {
+    opacity: 0.85;
+}
+
+.border-radius-10 {
+    color: black!important;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 10px;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.min-width-200 {
+    width: 70%;
+    min-width: 300px;
+    max-width: 400px;
+    display: table-cell;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.text-white {
+    color: white;
+}
+
+.text-black {
+    color: black;
+}
+
+.bg-darkgreen {
+    background-color: #006400;
+}
+

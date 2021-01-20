@@ -1,0 +1,11 @@
+<div class="list-group">
+    <a href="{% url 'products_list' %}" class="list-group-item bg-light list-group-item-action">
+        Все товары
+    </a>
+    {% for item in categories %}
+        <a href="{{ c.get_absolute_url }}" class="list-group-item bg-light list-group-item-action">
+            {{ item.title}}
+            <span class="badge bg-dark rounded-pill">{{ item.cnt }}</span>
+        </a>
+    {% endfor %}
+</div>

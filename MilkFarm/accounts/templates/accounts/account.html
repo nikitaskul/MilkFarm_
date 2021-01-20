@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+    <div class="d-grid gap-2 col-6 mx-auto mt-3 mb-2">
+        <div class="">
+            <div class="bg-light mt-3 p-4 border-radius-10 semi">
+                {% if user.is_authenticated %}
+                <div class="text-center mb-4">
+                    <h2>Личная информация</h2>
+                </div>
+                <div class="row">
+                    <div class="col ">
+                        <p>Email: </p>
+                    </div>
+                    <div class="col">
+                        <p>{{ user.email }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mt-2 semi">
+                            <form action="{% url 'accounts:change_user_email' %}">
+                                <div class="d-grid gap-2 col-12 mx-auto mb-2">
+                                    <button type="submit" class="btn bg-dark text-white btn-lg">Изменить Email</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mt-2 semi">
+                            <form action="{% url 'accounts:change_password' %}">
+                                <div class="d-grid gap-2 col-12 mx-auto mb-2">
+                                    <button type="submit" class="btn bg-dark text-white btn-lg">Изменить пароль</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                {% else %}
+                Вы не авторизированы!
+                {% endif %}
+            </div>
+        </div>
+        <div class="">
+            <div class="bg-light mt-3 p-4 border-radius-10 semi">
+                {% if user.is_authenticated %}
+                <div class="text-center mb-4">
+                    <h2>Дополнительная информация</h2>
+                </div>
+                <div class="row">
+                    <div class="col ">
+                        <p>Имя: </p>
+                        <p>Дата Рождения: </p>
+                        <p>Номер телефона: </p>
+                        <p>Адрес: </p>
+                        <p>О пользователе: </p>
+                        <p>Компания: </p>
+                    </div>
+                    <div class="col">
+                        <p>{{ user.name }}</p>
+                        <p>{{ user.date_of_birth }}</p>
+                        <p>{{ user.phone_number }}</p>
+                        <p>{{ user.address }}</p>
+                        <p>{{ user.about }}</p>
+                        <p>{{ user.company }}</p>
+                    </div>
+                </div>
+                <div class="mt-2 semi">
+                    <form action="{% url 'accounts:change_additional_info' %}">
+                        <div class="d-grid gap-2 col-12 mx-auto mb-2">
+                            <button type="submit" class="btn bg-dark text-light btn-lg">
+                                Изменить дополнительную информацию
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                {% else %}
+                Вы не авторизированы!
+                {% endif %}
+            </div>
+        </div>
+        <div class="">
+            <div class="bg-light mt-3 p-4 border-radius-10 semi ">
+                {% if user.is_authenticated %}
+                <div class="text-center mb-4">
+                    <h2>Платежная информация</h2>
+                </div>
+                <div class="row">
+                    <div class="col ">
+                        <p>Номер карты: </p>
+                        <p>Cчет: </p>
+                    </div>
+                    <div class="col">
+                        <p> {{ user.show_last_card_letters }} </p>
+                        <p>$ {{ user.amount }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mt-2 semi">
+                            <form action="{% url 'accounts:change_payment_details' %}">
+                                <div class="d-grid gap-2 col-12 mx-auto mb-2">
+                                    <button type="submit" class="btn bg-dark text-light btn-lg">
+                                        Изменить карту
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mt-2 semi">
+                            <form action="{% url 'accounts:add_money' %}">
+                                <div class="d-grid gap-2 col-12 mx-auto mb-2">
+                                    <button type="submit" class="btn bg-dark text-light btn-lg">
+                                        Внести деньги на счет
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                {% endif %}
+            </div>
+        </div>
+        <div class="">
+
+        </div>
+    </div>
+</div>
+{% endblock%}
